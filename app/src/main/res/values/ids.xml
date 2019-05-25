@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="view_pager" type="id" />
+    <item name="dot_layout" type="id" />
+    <!--<item name="top_news_title_text_view" type="id" />-->
+</resources>

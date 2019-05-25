@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ZhihuDaily</string>
+    <string name="today_hot_news">今日热闻</string>
+    <string name="notification">通知</string>
+    <string name="night_mode">夜间模式</string>
+    <string name="setting">设置选项</string>
+</resources>
