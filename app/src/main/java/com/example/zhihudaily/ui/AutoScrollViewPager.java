@@ -67,7 +67,7 @@ public class AutoScrollViewPager {
     }
 
     /**
-     * 播放，根据autoplay
+     * 播放
      */
     public void play() {
         handler.postDelayed(runnable, time);

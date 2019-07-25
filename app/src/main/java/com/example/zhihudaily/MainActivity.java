@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         newsAdapter = new NewsAdapter(this, normalNewsList, topNewsList);
         newsRecyclerView.setAdapter(newsAdapter);
-        newsRecyclerView.setNestedScrollingEnabled(false);
 
         /*
         获取SwipeRefreshLayout实例
