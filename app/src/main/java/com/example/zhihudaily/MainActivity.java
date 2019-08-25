@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("Http", Log.getStackTraceString(e));
+                runOnUiThread(() -> {
+                    swipeRefresh.setRefreshing(false);
+                });
             }
 
             @Override
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     normalNewsList.clear();
                     normalNewsList.addAll(EntityTransform.DailyNewsToNormalNews(dailyNews));
                     runOnUiThread(() -> {
-                        newsAdapter.getAutoScrollViewPager().notifyDataSetChanged();
+                        newsAdapter.getViewPagerFrameLayoutController().notifyDataSetChanged();
                         newsAdapter.notifyDataSetChanged();
                         swipeRefresh.setRefreshing(false);
                     });

@@ -17,7 +17,6 @@ import com.example.zhihudaily.Util;
 import com.example.zhihudaily.entity.NewsWithDate;
 import com.example.zhihudaily.entity.NormalNews;
 import com.example.zhihudaily.entity.TopNews;
-import com.example.zhihudaily.ui.AutoScrollViewPager;
 import com.example.zhihudaily.ui.ViewPagerFrameLayout;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<NormalNews> newsList;
     private List<TopNews> topNewsList;
     private String todayDate;
-    private AutoScrollViewPager autoScrollViewPager;
+    private ViewPagerFrameLayout.Controller controller;
 
     private static final int TYPE_NORMAL_NEWS = 0;
     private static final int TYPE_NEWS_WITH_DATE = 1;
@@ -88,19 +87,12 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         if (i == TYPE_VIEW_PAGER_FRAME) {
-            if (autoScrollViewPager == null) {
-                View view = LayoutInflater.from(context).inflate(
-                        R.layout.viewpagerframelayout, viewGroup, false);
-                ViewPagerFrameViewHolder vh = new ViewPagerFrameViewHolder(view);
-                PagerAdapter pagerAdapter = new ViewPagerAdapter(view.getContext(), topNewsList);
-                autoScrollViewPager = new AutoScrollViewPager(
-                            ((ViewPagerFrameViewHolder) vh).viewPagerFrameLayout, pagerAdapter);
-                return vh;
-            } else {
-                ViewPagerFrameViewHolder vh = new ViewPagerFrameViewHolder(
-                        autoScrollViewPager.getViewPagerFrameLayout());
-                return vh;
-            }
+            View view = LayoutInflater.from(context).inflate(
+                    R.layout.viewpagerframelayout, viewGroup, false);
+            ViewPagerFrameViewHolder vh = new ViewPagerFrameViewHolder(view);
+            PagerAdapter pagerAdapter = new ViewPagerAdapter(view.getContext(), topNewsList);
+            controller = ((ViewPagerFrameLayout) view).getControllerInstance(pagerAdapter);
+            return vh;
         } else if (i == TYPE_NORMAL_NEWS) {
             View view = LayoutInflater.from(context).inflate(
                     R.layout.news, viewGroup, false);
@@ -127,8 +119,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         if (i == 0) {
-            autoScrollViewPager.cancel();
-            autoScrollViewPager.play();
+            controller.cancel();
+            controller.play();
         } else {
             NormalNews news = newsList.get(i - 1);
             NewsViewHolder nvh = (NewsViewHolder) viewHolder;
@@ -136,8 +128,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             Glide.with(context)
                     .load(news.getImages().get(0))
-//                .placeholder(R.mipmap.placeholder)
-//                .error(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.pic_error)
+                .error(R.drawable.pic_error)
                     .into(nvh.imageView);
 
             if (viewHolder.getClass() == NewsWithDateViewHolder.class) {
@@ -180,8 +172,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return loadState;
     }
 
-    public AutoScrollViewPager getAutoScrollViewPager() {
-        return autoScrollViewPager;
+    public ViewPagerFrameLayout.Controller getViewPagerFrameLayoutController() {
+        return controller;
     }
 }
 
