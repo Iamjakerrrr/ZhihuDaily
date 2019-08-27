@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefresh;
     private ActionBar actionBar;
     private RequestNewsCallback requestNewsCallback = new RequestNewsCallback();
+    private EndlessScrollListener endlessScrollListener;
 
     private class RequestNewsCallback {
         private String lastDayDate = "";
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     lastDayDate = dailyNews.getDate();
                     normalNewsList.addAll(EntityTransform.DailyNewsToNormalNews(dailyNews));
                     runOnUiThread(() -> {
-                        newsAdapter.setLoadState(NewsAdapter.LOADING_COMPLETE);
+                        endlessScrollListener.setLoadState(EndlessScrollListener.LOADING_COMPLETE);
                         newsAdapter.notifyDataSetChanged();
                     });
                 } else {
@@ -129,18 +130,20 @@ public class MainActivity extends AppCompatActivity {
         /*
         RecyclerView添加滑动监听
          */
-        newsRecyclerView.addOnScrollListener(new EndlessScrollListener() {
+        endlessScrollListener = new EndlessScrollListener() {
 
             @Override
             public void onLoadMore() {
-                newsAdapter.setLoadState(NewsAdapter.LOADING);
+                setLoadState(EndlessScrollListener.LOADING);
                 /*
                 获取今日之前的新闻列表
                  */
                 HttpUtil.sendOkHttpRequest("https://news-at.zhihu.com/api/4/news/before/" +
-                                requestNewsCallback.lastDayDate, requestNewsCallback.loadMoreNewsCallback);
+                        requestNewsCallback.lastDayDate, requestNewsCallback.loadMoreNewsCallback);
             }
-        });
+        };
+        newsRecyclerView.addOnScrollListener(endlessScrollListener);
+
         initNews();
     }
 

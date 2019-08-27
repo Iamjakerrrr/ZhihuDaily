@@ -32,13 +32,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_NEWS_WITH_DATE = 1;
     private static final int TYPE_VIEW_PAGER_FRAME = 2;
 
-    // 当前加载状态，默认为加载完成
-    private int loadState = LOADING_COMPLETE;
-    // 正在加载
-    public static final int LOADING = 1;
-    // 加载完成
-    public static final int LOADING_COMPLETE = 2;
-
     static class BasicViewHolder extends RecyclerView.ViewHolder {
         View view;
 
@@ -157,19 +150,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return TYPE_NEWS_WITH_DATE;
         }
         return TYPE_NORMAL_NEWS;
-    }
-
-    /**
-     * 设置上拉加载状态
-     *
-     * @param loadState 0.正在加载 1.加载完成 2.加载到底
-     */
-    public void setLoadState(int loadState) {
-        this.loadState = loadState;
-    }
-
-    public int getLoadState() {
-        return loadState;
     }
 
     public ViewPagerFrameLayout.Controller getViewPagerFrameLayoutController() {
