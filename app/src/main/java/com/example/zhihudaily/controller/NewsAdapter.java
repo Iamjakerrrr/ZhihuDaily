@@ -1,4 +1,4 @@
-package com.example.zhihudaily.adapter;
+package com.example.zhihudaily.controller;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,12 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.zhihudaily.NewsContentActivity;
 import com.example.zhihudaily.R;
-import com.example.zhihudaily.Util;
-import com.example.zhihudaily.entity.NewsWithDate;
-import com.example.zhihudaily.entity.NormalNews;
-import com.example.zhihudaily.entity.TopNews;
+import com.example.zhihudaily.util.Util;
+import com.example.zhihudaily.model.entity.NewsWithDate;
+import com.example.zhihudaily.model.entity.NormalNews;
+import com.example.zhihudaily.model.entity.TopNews;
 import com.example.zhihudaily.ui.ViewPagerFrameLayout;
 
 import java.util.List;

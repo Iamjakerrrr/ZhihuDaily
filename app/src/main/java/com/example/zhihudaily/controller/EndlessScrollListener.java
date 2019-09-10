@@ -1,9 +1,7 @@
-package com.example.zhihudaily;
+package com.example.zhihudaily.controller;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-import com.example.zhihudaily.adapter.NewsAdapter;
 
 public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
     // 当前加载状态，默认为加载完成

@@ -1,4 +1,4 @@
-package com.example.zhihudaily.entity;
+package com.example.zhihudaily.model.entity;
 
 import java.util.List;
 

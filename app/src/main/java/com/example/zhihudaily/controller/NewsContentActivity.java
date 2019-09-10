@@ -1,4 +1,4 @@
-package com.example.zhihudaily;
+package com.example.zhihudaily.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.zhihudaily.entity.NewsContent;
+import com.example.zhihudaily.R;
+import com.example.zhihudaily.model.entity.NewsContent;
 import com.example.zhihudaily.http.HttpUtil;
-import com.example.zhihudaily.json.JsonToEntity;
+import com.example.zhihudaily.http.JsonToEntity;
 
 import java.io.IOException;
 

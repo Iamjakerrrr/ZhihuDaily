@@ -1,4 +1,4 @@
-package com.example.zhihudaily.entity;
+package com.example.zhihudaily.model.entity;
 
 public class NewsWithDate extends NormalNews {
     private String date;

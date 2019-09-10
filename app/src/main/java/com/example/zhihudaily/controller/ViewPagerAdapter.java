@@ -1,17 +1,15 @@
-package com.example.zhihudaily.adapter;
+package com.example.zhihudaily.controller;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.zhihudaily.NewsContentActivity;
 import com.example.zhihudaily.R;
-import com.example.zhihudaily.entity.TopNews;
+import com.example.zhihudaily.model.entity.TopNews;
 
 import java.util.List;
 
